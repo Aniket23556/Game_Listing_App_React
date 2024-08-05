@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import GenreList from '../Components/GenreList'
 import GlobalApi from '../Services/GlobalApi'
+import Banner from '../Components/Banner';
 
 function Home() {
 
@@ -12,17 +13,19 @@ function Home() {
 
   const getAllGamesList=() =>{
       GlobalApi.getAllGames.then((resp)=>{
-      console.log(resp.data.results);
-      setAllGameList(resp.date.results)
+        setAllGameList(resp.data.results)
     })
   }
 
   return (
-    <div className='grid grid-cols-4 px-8 py-2'>
-      <div className='h-screen hidden md:block '>
+    <div className='grid grid-cols-4 px-8'>
+      <div className='h-screen hidden md:block px-8'>
         <GenreList/>
       </div>
-      <div className='col-span-4 md:col-span-3'>Game List</div>
+      <div className='col-span-4 md:col-span-3 px-4'>
+        {/* {allGameList?.length>0 ? <Banner gameBanner={allGameList[0]} />:null} */}
+        {allGameList?.length>0 ? <Banner gameBanner={allGameList[0]}/>:null}
+      </div>
     </div>
   )
 }
