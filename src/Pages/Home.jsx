@@ -9,6 +9,7 @@ function Home() {
 
   const [allGameList, setAllGameList]=useState();
   const [gameListByGenres,setGameListByGenres]=useState([]);
+  const [selctedGenresName,setSelctedGenresName]=useState('Action');
 
   useEffect(()=>{
     getAllGamesList();
@@ -17,14 +18,12 @@ function Home() {
 
   const getAllGamesList=() =>{
       GlobalApi.getAllGames.then((resp)=>{
-        setAllGameList(resp.data.results)
+      setAllGameList(resp.data.results)
     })
   }
 
   const getGameListByGenresId=(id)=>{
- 
     GlobalApi.getGameListByGenreId(id).then((resp)=>{
-     
       setGameListByGenres(resp.data.results)
     })
   }
